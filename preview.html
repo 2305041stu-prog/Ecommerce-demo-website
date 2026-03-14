@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>CaseCraze - Phone Case Store</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-XXXXXXX');
+</script>
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+</script>
+
+</head>
+
+<body style="font-family: Arial; text-align:center; background:#f5f5f5;">
+
+<h1>📱 CaseCraze</h1>
+<p>Trendy Phone Cases for Every Style</p>
+
+<hr>
+
+<h2>Featured Cases</h2>
+
+<div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap;">
+
+<!-- Product 1 -->
+<div style="background:white; padding:20px; width:220px; border-radius:10px;">
+<h3>🔥 Marble Case</h3>
+<p>Price: ₹499</p>
+
+<button onclick="gtag('event','view_product',{product_name:'Marble Case'});">
+View Product
+</button>
+
+<br><br>
+
+<button onclick="gtag('event','add_to_cart',{product_name:'Marble Case'});">
+Add to Cart
+</button>
+
+<br><br>
+
+<button onclick="showPayment('Marble Case',499); gtag('event','buy_now',{product_name:'Marble Case'});">
+Buy Now
+</button>
+
+</div>
+
+<!-- Product 2 -->
+<div style="background:white; padding:20px; width:220px; border-radius:10px;">
+<h3>🌈 Gradient Case</h3>
+<p>Price: ₹399</p>
+
+<button onclick="gtag('event','view_product',{product_name:'Gradient Case'});">
+View Product
+</button>
+
+<br><br>
+
+<button onclick="gtag('event','add_to_cart',{product_name:'Gradient Case'});">
+Add to Cart
+</button>
+
+<br><br>
+
+<button onclick="showPayment('Gradient Case',399); gtag('event','buy_now',{product_name:'Gradient Case'});">
+Buy Now
+</button>
+
+</div>
+
+<!-- Product 3 -->
+<div style="background:white; padding:20px; width:220px; border-radius:10px;">
+<h3>🖤 Matte Black Case</h3>
+<p>Price: ₹599</p>
+
+<button onclick="gtag('event','view_product',{product_name:'Matte Black Case'});">
+View Product
+</button>
+
+<br><br>
+
+<button onclick="gtag('event','add_to_cart',{product_name:'Matte Black Case'});">
+Add to Cart
+</button>
+
+<br><br>
+
+<button onclick="showPayment('Matte Black Case',599); gtag('event','buy_now',{product_name:'Matte Black Case'});">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+<hr>
+
+<h2>User Actions</h2>
+
+<button onclick="gtag('event','signup_click');">
+Sign Up
+</button>
+
+<br><br>
+
+<button onclick="gtag('event','contact_click');">
+Contact Us
+</button>
+
+<hr>
+
+<a href="https://www.instagram.com"
+onclick="gtag('event','external_link_click');">
+Visit Our Instagram
+</a>
+
+<hr>
+
+<h2>💳 Dummy Payment Gateway</h2>
+
+<div id="paymentSection" style="display:none;">
+
+<h3 id="productTitle"></h3>
+<p id="productPrice"></p>
+
+<p>Enter Card Number</p>
+
+<input type="text" id="cardNumber" placeholder="Enter Card Number">
+
+<br><br>
+
+<button onclick="processPayment()">Pay Now</button>
+
+<p id="paymentResult"></p>
+
+<p><b>Test Cards</b></p>
+
+<p>
+1111 1111 1111 1111 → Payment Success<br>
+2222 2222 2222 2222 → Payment Failed
+</p>
+
+</div>
+
+<script>
+
+let selectedProduct="";
+let selectedPrice=0;
+
+function showPayment(product,price){
+
+selectedProduct=product;
+selectedPrice=price;
+
+document.getElementById("paymentSection").style.display="block";
+document.getElementById("productTitle").innerHTML="Buying: "+product;
+document.getElementById("productPrice").innerHTML="Amount: ₹"+price;
+
+}
+
+function processPayment(){
+
+let card=document.getElementById("cardNumber").value.replace(/\s/g,'');
+let result=document.getElementById("paymentResult");
+
+if(card==="1111111111111111"){
+
+result.innerHTML="✅ Payment Successful!";
+result.style.color="green";
+
+gtag('event','purchase',{
+transaction_id:'CASE'+Math.floor(Math.random()*100000),
+value:selectedPrice,
+currency:'INR',
+product:selectedProduct
+});
+
+}
+
+else if(card==="2222222222222222"){
+
+result.innerHTML="❌ Payment Failed!";
+result.style.color="red";
+
+}
+
+else{
+
+result.innerHTML="❌ Invalid Card - Payment Failed!";
+result.style.color="red";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
